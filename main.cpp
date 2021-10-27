@@ -7,19 +7,22 @@
 int main(int argc, const char* argv[]) {
     std::string text = u8"Karu oli hoolimatu, lampjalgne ja räpane.";
 
-    Transformer transformer(
-        "Estonian",
-        "/usr/share/espeak-ng-data-1.50/",
-        "/home/egert/Prog/TTS-CPP/model"
-    );
+    TransformerConfig config = {
+        .verbose = true,
+        .espeakLang = "Estonian",
+        .espeakDataPath = "/usr/share/espeak-ng-data-1.50/",
+        .modelPath = "/home/egert/Prog/TTS-CPP/model",
+        .withStress = false,
+        .sampleRate = 16000,
+        .nMel = 80,
+        .nFFT = 1024,
+        .fMin = 0,
+        .fMax = 8000
+    };
 
-    auto predicted = transformer.Synthesize(text);
-    for (int i = 0; i < predicted.size(); i++) {
-        if (i % 80 == 0) {
-            std::cout << std::endl;
-        }
-        std::cout << predicted[i] << " " << std::ends;
-    }
+    Transformer transformer(config);
+
+    transformer.Synthesize(text);
 
     return 0;
 
