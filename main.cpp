@@ -14,8 +14,10 @@ int main(int argc, const char* argv[]) {
         .modelPath = "/home/egert/Prog/TTS-CPP/model",
         .withStress = false,
         .sampleRate = 16000,
-        .nMel = 80,
         .nFFT = 1024,
+        .nMel = 80,
+        .hopLength = 256,
+        .winLength = 1024,
         .fMin = 0,
         .fMax = 8000
     };
