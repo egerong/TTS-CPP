@@ -11,12 +11,14 @@ add_subdirectory(${TRANSFORMER_DIR})
 add_executable(TTS_CPP main.cpp)
 
 set(Torch_DIR TransformerTTS-Cpp/libtorch/share/cmake/Torch)
+find_package(CUDA REQUIRED)
 find_package(Torch REQUIRED)
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${TORCH_CXX_FLAGS}")
-
+#set(CUDA_TOOLKIT_ROOT_DIR /usr/local/cuda-11.6/)
 target_link_libraries(
     TTS_CPP
     TransformerTTS-CPP
+    #${CUDA_LIBRARIES}
 #    ${TORCH_LIBRARIES}
 )
 
